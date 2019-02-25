@@ -42,12 +42,21 @@ class BlockStack
 	public char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
 
 	/**
-	 * Getters & Setetrs
+	 * @return if stack is empty, returns true, otherwise is false
 	 */
+	public boolean isEmpty()
+	{
+		return (this.iTop == -1);
+	}
+
+	/*
+	* Getters and Setters
+	*/
 	public int getITop(){return iTop;}
-	public int getSize(){return iSize;}
+	public int getISize(){return iSize;}
 	public int getAccessCounter(){return stackAccessCounter;}
 	public char[] getAcStack(){return acStack;}
+
 
 	/**
 	 * Default constructor
@@ -114,9 +123,9 @@ class BlockStack
 	 */
 	public char pop()
 	{
-		stackAccessCounter++;
 		char cBlock = this.acStack[this.iTop];
 		this.acStack[this.iTop--] = '*'; // Leave prev. value undefined
+		stackAccessCounter++;
 		return cBlock;
 	}
 }

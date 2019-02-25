@@ -34,7 +34,7 @@ public class BlockManager
 	/**
 	 * For atomicity
 	 */
-	//private static Semaphore mutex = new Semaphore(1);
+	private static Semaphore mutex = new Semaphore(1);
 
 	/*
 	 * For synchronization
@@ -163,7 +163,7 @@ public class BlockManager
 
 			try
 			{
-				//mutex.P(); //Call P() for run method
+				mutex.P(); //Call P() for run method
 				System.out.println("AcquireBlock thread [TID=" + this.iTID + "] requests Ms block.");
 			
 				if(!soStack.isEmpty())
@@ -199,9 +199,9 @@ public class BlockManager
 				reportException(e);
 				System.exit(1);
 			}
-			// finally{
-			// 	mutex.V(); //Release lock when done
-			// }
+			finally{
+				mutex.V(); //Release lock when done
+			}
 			
 			phase2();
 
@@ -231,7 +231,7 @@ public class BlockManager
 
 			try
 			{
-				//mutex.P(); //Call P() for run method
+				mutex.P(); //Call P() for run method
 				if(soStack.isEmpty() == false)
 					this.cBlock = (char)(soStack.pick() + 1);
 
@@ -269,9 +269,9 @@ public class BlockManager
 				reportException(e);
 				System.exit(1);
 			}
-			// finally{
-			// 	mutex.V(); //Release lock when done
-			// }
+			finally{
+				mutex.V(); //Release lock when done
+			}
 
 
 			phase2();
@@ -294,7 +294,7 @@ public class BlockManager
 
 			try
 			{
-				//mutex.P(); //Call P() for run() method
+				mutex.P(); //Call P() for run() method
 				for(int i = 0; i < siThreadSteps; i++)
 				{
 					System.out.print("Stack Prober [TID=" + this.iTID + "]: Stack state: ");
@@ -318,9 +318,9 @@ public class BlockManager
 				reportException(e);
 				System.exit(1);
 			}
-			// finally{
-			// 	mutex.V(); //Release lock when done
-			// }
+			finally{
+				mutex.V(); //Release lock when done
+			}
 
 
 			phase2();
