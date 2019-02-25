@@ -28,29 +28,35 @@ class BlockStack
 
 	/**
 	 * Current size of the stack
-	 * Make the variable private
 	 */
-	private int iSize = DEFAULT_SIZE;
+	public int iSize = DEFAULT_SIZE;
 
 	/**
 	 * Current top of the stack
-	 * Make the variable private
 	 */
-	private int iTop  = 3;
+	public int iTop  = 3;
 
 	/**
 	 * stack[0:5] with four defined values
-	 * Make the variable private
 	 */
-	private char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
+	public char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
 
 	/**
-	 * Add mutators & accessors from iTop, iSize & acStack
+	 * @return if stack is empty, returns true, otherwise is false
 	 */
-	public int getTop(){return iTop;}
-	public int getSize(){return iSize;}
+	public boolean isEmpty()
+	{
+		return (this.iTop == -1);
+	}
+
+	/*
+	* Getters and Setters
+	*/
+	public int getITop(){return iTop;}
+	public int getISize(){return iSize;}
 	public int getAccessCounter(){return stackAccessCounter;}
 	public char[] getAcStack(){return acStack;}
+
 
 	/**
 	 * Default constructor
@@ -88,7 +94,7 @@ class BlockStack
 	 */
 	public char pick()
 	{
-		stackAccessCounter++; //increment stack access counter
+		stackAccessCounter++;
 		return this.acStack[this.iTop];
 	}
 
@@ -98,7 +104,7 @@ class BlockStack
 	 */
 	public char getAt(final int piPosition)
 	{
-		stackAccessCounter++; //increment stack access counter
+		stackAccessCounter++;
 		return this.acStack[piPosition];
 	}
 
@@ -107,15 +113,8 @@ class BlockStack
 	 */
 	public void push(final char pcBlock)
 	{
-		//If stack is empty, place pcBlock at 0 (++iTop), otherwise, operate as per.
-		
-		if(this.isEmpty()){
-			this.acStack[++this.iTop] = 'a';
-		} else{
-			this.acStack[++this.iTop] = pcBlock;
-			stackAccessCounter++; //increment stack access counter
-			System.out.println("Succesfully pushed to stack.");
-		}
+		stackAccessCounter++;
+		this.acStack[++this.iTop] = pcBlock;
 	}
 
 	/**
@@ -126,18 +125,8 @@ class BlockStack
 	{
 		char cBlock = this.acStack[this.iTop];
 		this.acStack[this.iTop--] = '*'; // Leave prev. value undefined
-		stackAccessCounter++; //increment stack access counter
-		System.out.println("Succesfully popped off stack.");
+		stackAccessCounter++;
 		return cBlock;
-	}
-
-	/**
-	 * Standard pop operation
-	 * @return if stack is empty, returns true, otherwise is false
-	 */
-	public boolean isEmpty()
-	{
-		return (this.iTop == -1);
 	}
 }
 
