@@ -9,9 +9,6 @@
  * Inspired by an earlier code by Prof. D. Probst
 
  */
-
-import common.myStackException;
-
 class BlockStack
 {
 	/**
@@ -22,7 +19,7 @@ class BlockStack
 	/*
 	* Task 1: create stack access counter
 	*/
-	private int stackAccessCounter = 0;
+	public int stackAccessCounter = 0;
 
 	/**
 	 * Default stack size
@@ -37,12 +34,12 @@ class BlockStack
 	/**
 	 * Current top of the stack
 	 */
-	private int iTop  = 3;
+	public int iTop  = 3;
 
 	/**
 	 * stack[0:5] with four defined values
 	 */
-	private char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
+	public char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
 
 	/**
 	 * @return if stack is empty, returns true, otherwise is false
@@ -98,10 +95,7 @@ class BlockStack
 	public char pick()
 	{
 		stackAccessCounter++;
-		if(!isEmpty())
-			return this.acStack[this.iTop];
-		else 
-			throw new myStackException("Stack is empty!!!"); //If stack is empty, cannot return top element.
+		return this.acStack[this.iTop];
 	}
 
 	/**
@@ -111,10 +105,7 @@ class BlockStack
 	public char getAt(final int piPosition)
 	{
 		stackAccessCounter++;
-		if(piPosition < iSize) //If position is inside limits of stack size, return value
-			return this.acStack[piPosition];
-		else
-			throw new myStackException("Cannot access position " + piPosition + " in the stack.");
+		return this.acStack[piPosition];
 	}
 
 	/**
@@ -123,13 +114,7 @@ class BlockStack
 	public void push(final char pcBlock)
 	{
 		stackAccessCounter++;
-		if(iTop < iSize){
-			if(isEmpty()) 
-				this.acStack[++this.iTop] = 'a'; //If stack is empty, add 'a' as first value
- 			else
-				this.acStack[++this.iTop] = pcBlock;
-		} else
-			throw new myStackException("Stack is full!!!"); //If stack is full, cannot push
+		this.acStack[++this.iTop] = pcBlock;
 	}
 
 	/**
@@ -138,13 +123,10 @@ class BlockStack
 	 */
 	public char pop()
 	{
+		char cBlock = this.acStack[this.iTop];
+		this.acStack[this.iTop--] = '*'; // Leave prev. value undefined
 		stackAccessCounter++;
-		if(!isEmpty()){
-			char cBlock = this.acStack[this.iTop];
-			this.acStack[this.iTop--] = '*'; // Leave prev. value undefined
-			return cBlock;
-		} else
-			throw new myStackException("Empty Stack!!!"); //If stack is empty, cannot pop
+		return cBlock;
 	}
 }
 
