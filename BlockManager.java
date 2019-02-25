@@ -156,13 +156,12 @@ public class BlockManager
 		{
 			System.out.println("AcquireBlock thread [TID=" + this.iTID + "] starts executing.");
 
-			
+			mutex.P(); //Start semaphore here (wait)
 			phase1();
 
 
 			try
 			{
-				mutex.P(); //Start semaphore here (wait)
 				System.out.println("AcquireBlock thread [TID=" + this.iTID + "] requests Ms block.");
 
 				this.cCopy = soStack.pop();
@@ -217,13 +216,12 @@ public class BlockManager
 		{
 			System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] starts executing.");
 
-
+			mutex.P(); //Start semaphore here (wait)
 			phase1();
 
 
 			try
 			{
-				mutex.P(); //Start semaphore here (wait)
 				if(soStack.isEmpty() == false)
 					this.cBlock = (char)(soStack.pick() + 1);
 
@@ -273,12 +271,12 @@ public class BlockManager
 	{
 		public void run()
 		{
-			phase1();
 
+			mutex.P(); //Start semaphore here (wait)
+			phase1();
 
 			try
 			{
-				mutex.P(); //Start semaphore here (wait)
 				for(int i = 0; i < siThreadSteps; i++)
 				{
 					System.out.print("Stack Prober [TID=" + this.iTID + "]: Stack state: ");
