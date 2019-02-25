@@ -164,7 +164,7 @@ public class BlockManager
 			try
 			{
 				System.out.println("AcquireBlock thread [TID=" + this.iTID + "] requests Ms block.");
-
+			
 				if(!soStack.isEmpty())
 					this.cCopy = soStack.pop();
 				else

@@ -1,0 +1,56 @@
+BlockManager.java:120: error: cannot find symbol
+                        System.out.println("Final value of top = " + soStack.getTop() + ".");
+                                                                            ^
+  symbol:   method getTop()
+  location: variable soStack of type BlockStack
+BlockManager.java:122: error: cannot find symbol
+                        System.out.println("Final value of stack top-1 = " + soStack.getAt(soStack.getTop() - 1) + ".");
+                                                                                                  ^
+  symbol:   method getTop()
+  location: variable soStack of type BlockStack
+BlockManager.java:123: error: cannot find symbol
+                        System.out.println("Stack access count = " + soStack.getAccessCounter());
+                                                                            ^
+  symbol:   method getAccessCounter()
+  location: variable soStack of type BlockStack
+BlockManager.java:171: error: cannot find symbol
+                                        " from position " + (soStack.getTop() + 1) + "."
+                                                                    ^
+  symbol:   method getTop()
+  location: variable soStack of type BlockStack
+BlockManager.java:178: error: cannot find symbol
+                                        soStack.getTop() + "."
+                                               ^
+  symbol:   method getTop()
+  location: variable soStack of type BlockStack
+BlockManager.java:221: error: cannot find symbol
+                                if(soStack.isEmpty() == false)
+                                          ^
+  symbol:   method isEmpty()
+  location: variable soStack of type BlockStack
+BlockManager.java:228: error: cannot find symbol
+                                        " to position " + (soStack.getTop() + 1) + "."
+                                                                  ^
+  symbol:   method getTop()
+  location: variable soStack of type BlockStack
+BlockManager.java:236: error: cannot find symbol
+                                        soStack.getTop() + "."
+                                               ^
+  symbol:   method getTop()
+  location: variable soStack of type BlockStack
+BlockManager.java:278: error: cannot find symbol
+                                        for(int s = 0; s < soStack.getSize(); s++)
+                                                                  ^
+  symbol:   method getSize()
+  location: variable soStack of type BlockStack
+BlockManager.java:281: error: cannot find symbol
+                                                        (s == BlockManager.soStack.getTop() ? "(" : "[") +
+                                                                                  ^
+  symbol:   method getTop()
+  location: variable soStack of type BlockStack
+BlockManager.java:283: error: cannot find symbol
+                                                        (s == BlockManager.soStack.getTop() ? ")" : "]")
+                                                                                  ^
+  symbol:   method getTop()
+  location: variable soStack of type BlockStack
+11 errors
