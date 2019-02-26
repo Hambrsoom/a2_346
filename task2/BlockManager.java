@@ -31,9 +31,8 @@ public class BlockManager
 
 	/**
 	 * For atomicity
-	 * Binary Semaphore
 	 */
-	private static Semaphore mutex = new Semaphore(1);
+	//private static Semaphore mutex = new Semaphore(...);
 
 	/*
 	 * For synchronization
@@ -156,7 +155,7 @@ public class BlockManager
 		{
 			System.out.println("AcquireBlock thread [TID=" + this.iTID + "] starts executing.");
 
-			mutex.P(); //Start semaphore here (wait)
+
 			phase1();
 
 
@@ -190,9 +189,6 @@ public class BlockManager
 				reportException(e);
 				System.exit(1);
 			}
-			finally{
-				mutex.V(); //Once done, release lock
-			}
 
 			phase2();
 
@@ -216,7 +212,7 @@ public class BlockManager
 		{
 			System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] starts executing.");
 
-			mutex.P(); //Start semaphore here (wait)
+
 			phase1();
 
 
@@ -251,9 +247,6 @@ public class BlockManager
 				reportException(e);
 				System.exit(1);
 			}
-			finally{
-				mutex.V(); //Release lock when done
-			}
 
 
 			phase2();
@@ -271,9 +264,8 @@ public class BlockManager
 	{
 		public void run()
 		{
-
-			mutex.P(); //Start semaphore here (wait)
 			phase1();
+
 
 			try
 			{
@@ -299,9 +291,6 @@ public class BlockManager
 			{
 				reportException(e);
 				System.exit(1);
-			}
-			finally{
-				mutex.V(); //Release lock once done
 			}
 
 
