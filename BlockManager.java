@@ -39,10 +39,8 @@ public class BlockManager
 	 * For synchronization
 	 */
 
-	/**
-	 * s1 is to make sure phase I for all is done before any phase II begins
-	 */
-	//private static Semaphore s1 = new Semaphore(...);
+	 
+	private static Semaphore s1 = new Semaphore(NUM_PROBERS);
 
 	/**
 	 * s2 is for use in conjunction with Thread.turnTestAndSet() for phase II proceed
@@ -56,6 +54,7 @@ public class BlockManager
 	{
 		try
 		{
+			//asda
 			// Some initial stats...
 			System.out.println("Main thread starts executing.");
 			System.out.println("Initial value of top = " + soStack.getITop() + ".");
@@ -157,7 +156,9 @@ public class BlockManager
 			System.out.println("AcquireBlock thread [TID=" + this.iTID + "] starts executing.");
 
 			mutex.P(); //Start semaphore here (wait)
+			s1.P();
 			phase1();
+			s1.V();
 
 
 			try
